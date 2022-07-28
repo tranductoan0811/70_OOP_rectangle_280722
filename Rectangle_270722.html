@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h2>Thực hành Class tính chu vi, diện tích, hiển thị hình chữ nhật</h2>
+  </head>
+  <body>
+    <canvas id="rect_canvas" style="border: 1px solid #3878B4;"></canvas>
+    <p>Kết quả<br>
+    <span id="result"></span>
+    </p>
+    <script>
+      class Rectangle {
+        constructor(chieudai, chieurong) {
+            this.chieudai = chieudai;
+            this.chieurong = chieurong;
+        }
+
+        getWidth() {
+          return this.chieudai;
+        }
+
+        getHeight() {
+          return this.chieurong;
+        }
+
+        getAreaRect() {
+          return this.chieudai * this.chieurong;
+        }
+
+        getPerimeterRect() {
+          return 2 * this.chieudai * this.chieurong;
+        }
+      }
+
+      let inputWidthRect = +prompt("Nhập chiều dài HCN : ");
+      let inputHeightRect = +prompt("Nhập chiều cao HCN : ");
+
+      let canvas = document.getElementById("rect_canvas");
+          canvas.width = inputWidthRect * 2;
+          canvas.height = inputHeightRect * 2; 
+
+      let rectangle = new Rectangle(inputWidthRect,inputHeightRect);
+
+      let chieudai = rectangle.getWidth();
+      let chieurong = rectangle.getHeight();
+      let dientich = rectangle.getAreaRect();
+      let chuvi = rectangle.getPerimeterRect();
+
+      let rectXPosition = (inputWidthRect/2);
+      let rectYPosition = (inputHeightRect/2);
+
+      let rect = document.getElementById("rect_canvas").getContext("2d");
+          rect.beginPath();
+          rect.fillStyle = "#B5C7D7 ";
+          rect.fillRect(rectXPosition, rectYPosition, inputWidthRect, inputHeightRect);
+          rect.stroke();
+
+      document.getElementById("result").innerHTML = (
+      "Hình chữ nhật có chiều dài : "   + chieudai + " (m) " + " , chiều cao: " + chieurong + " (m) " + "<br>" + 
+      " Có diện tích là: " + dientich.toLocaleString() + " ( m2 ) , chu vi là:  " + chuvi.toLocaleString() + " ( m ) ");
+
+    </script>
+
+  </body>
+</html>
